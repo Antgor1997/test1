@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            MyHouse
+        </title>
+    </head>
+    <body>
+        <p>
+            Project "My House":
+        </p>
+        <canvas id="house" width="1000" height="750" style="background-color:LimeGreen; border:1px solid #ccc;"></canvas>
+        <script>
+            var canvas=document.getElementById('house');
+            obCanvas = canvas.getContext('2d');
+
+            //creating linear gradient
+            lineGrad = obCanvas.createLinearGradient(200, 0, 200, 700);
+            lineGrad.addColorStop(0, "DodgerBlue");
+            lineGrad.addColorStop(1, "Cyan");
+            obCanvas.fillStyle = lineGrad;
+            obCanvas.fillRect(0, 0, 1000, 450);
+
+            //creating radial gradient
+            radialGrad = obCanvas.createRadialGradient(100, 100, 50, 100, 100, 70);
+            radialGrad.addColorStop(0, "LightGrey");
+
+            radialGrad2 = obCanvas.createRadialGradient(100, 100, 50, 100, 100, 200);
+            radialGrad2.addColorStop(0, "Orange");
+            radialGrad2.addColorStop(1, "DarkOrange");
+
+            obCanvas.beginPath();
+            obCanvas.fillStyle = radialGrad2;
+            obCanvas.moveTo(750, 500);
+            obCanvas.arc(900, 200, 100, 0, 2*Math.PI, false);
+            obCanvas.lineWidth = 1;
+            obCanvas.fill();
+            obCanvas.closePath();
+
+            //creating the clouds
+            drawCloud(75, 275);
+            drawCloud(400, 75);
+            drawCloud(725, 275);
+
+            //creating the house body
+            createFillRectangle(400, 450, 250, 200, "SaddleBrown");
+            createFillRectangle(400, 400, 250, 50, "Chocolate");
+
+            obCanvas.beginPath();
+            obCanvas.fillStyle = "Brown";
+            obCanvas.moveTo(525,250);
+            obCanvas.lineTo(400,400);
+            obCanvas.lineTo(650,400);
+            obCanvas.fill();
+            obCanvas.closePath();
+
+            obCanvas.beginPath();
+            obCanvas.fillStyle = "Maroon";
+            obCanvas.moveTo(525,250);
+            obCanvas.lineTo(385,425);
+            obCanvas.lineTo(370,425);
+            obCanvas.lineTo(525,225);
+            obCanvas.lineTo(680,425);
+            obCanvas.lineTo(665,425);
+            obCanvas.lineTo(525,250);
+            obCanvas.fill();
+            obCanvas.closePath();
+
+            //creating the door
+            createFillRectangle(420, 480, 90, 170, "Sienna");
+            createFillRectangle(430, 490, 70, 150,"DarkGoldenrod" );
+            obCanvas.beginPath();
+            obCanvas.fillStyle = "DarkSlateGray";
+            obCanvas.arc(490, 560, 5, 0, 2*Math.PI, false);
+            obCanvas.fill();
+            obCanvas.closePath();
+
+            //creating lower window
+            createFillRectangle(540, 470, 75, 75, "Olive");
+            createFillRectangle(530, 545, 95, 20, "DarkOrange");
+            createFillRectangle(545, 475, 65, 20, "DarkTurquoise");
+            createFillRectangle(545, 500, 30, 40, "DarkTurquoise");
+            createFillRectangle(580, 500, 30, 40, "DarkTurquoise");
+
+            //creating upper window
+            createFillRectangle(500, 300, 50, 50, "PeachPuff");
+            createFillRectangle(505, 305, 40, 15, "DarkTurquoise");
+            createFillRectangle(505, 325, 18, 20, "DarkTurquoise");
+            createFillRectangle(527, 325, 18, 20, "DarkTurquoise");
+
+            //creating the chimney
+            obCanvas.beginPath();
+            obCanvas.fillStyle = "Sienna";
+            obCanvas.moveTo(598,270);
+            obCanvas.lineTo(638,270);
+            obCanvas.lineTo(638,372);
+            obCanvas.lineTo(598,320);
+            obCanvas.lineTo(598,270);
+            obCanvas.fill();
+            obCanvas.closePath();
+            createFillRectangle(589, 250, 58, 20, "Black");
+
+            //creating the fence
+            obCanvas.beginPath();
+            obCanvas.fillStyle = "White";
+            x=0;
+            y=545;
+            while(x<400||(x>640 && x<1000)) {
+                obCanvas.fillRect(x, y, 10, 10);
+                obCanvas.fillRect(x, y - 40, 10, 10);
+                obCanvas.moveTo(x + 10, y + 20);
+                obCanvas.lineTo(x + 10, y - 50);
+                obCanvas.lineTo(x + 25, y - 80);
+                obCanvas.lineTo(x + 40, y - 50);
+                obCanvas.lineTo(x + 40, y + 20);
+                obCanvas.moveTo(x + 10, y + 20);
+                x+=40;
+                if(x==400){
+                    x=650;
+                }
+            }
+            obCanvas.fill();
+            obCanvas.closePath();
+
+            function createFillRectangle(x, y, length, heigth, style){
+                obCanvas.beginPath();
+                obCanvas.fillStyle = style;
+                obCanvas.fillRect(x, y, length, heigth);
+                obCanvas.fill();
+                obCanvas.closePath();
+            }
+
+            function drawCloud(x, y){
+                obCanvas.beginPath();
+                obCanvas.fillStyle = radialGrad;
+                obCanvas.moveTo(x, y);
+                obCanvas.arc(x, y, 40, 0, 2*Math.PI, false);
+                obCanvas.arc(x+50, y, 50, 0, 2*Math.PI, false);
+                obCanvas.arc(x+100, y, 60, 0, 2*Math.PI, false);
+                obCanvas.arc(x+150, y, 50, 0, 2*Math.PI, false);
+                obCanvas.arc(x+200, y, 40, 0, 2*Math.PI, false);
+                obCanvas.lineWidth = 1;
+                obCanvas.fill();
+                obCanvas.closePath();
+            }
+        </script>
+        <p>
+            Выполнил: студент 3-го курса ДонНУ им. В.Стуса Физико-Технического факультета группы КН-В Горяшин Антон Сергеевич
+        </p>
+    </body>
+</html>
